@@ -94,6 +94,11 @@ var xtra_utils = {
         });
 
         return xp.required(reqdata, params, any);
+    },
+
+    indexOfKeyInAnArray: function(data, key, reference) {
+        //used to find the index of an object in an array with certain key value pair
+        return data.map(function(x) {return x[key]; }).indexOf(reference);        
     }
 };
 
@@ -108,4 +113,5 @@ if(require.main === module) {
     console.log(arr);
     console.log(xtra_utils.getUniqueElements(arr1));
     console.log(xtra_utils.countUnique(arr1));
+    console.log(xtra_utils.indexOfKeyInAnArray(arr, "count", 1))
 }
