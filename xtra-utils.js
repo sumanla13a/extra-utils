@@ -64,6 +64,36 @@ var xtra_utils = {
                 uniqueElm[entry] = ++uniqueElm[entry] || 1;
         });
         return uniqueElm;
+    },
+
+    required: function (reqdata, params, any) {
+        var missing = [];
+        params.forEach(function (entry) {
+            if (!reqdata[entry] && reqdata[entry] !== 0) missing.push(entry);
+        });
+
+        var err;
+        if (missing.length) {
+            if (!any || missing.length === params.length) {
+                err = new Error('missing required params: ' + missing.join(any ?
+                    '|' : ','));
+            }
+        }
+
+        return err;
+    },
+
+    contains: function (data, params, any) {
+        // data is an array and we are checking if the array
+        // contains all/any entry from params
+
+        // prepare dummy reqdata object and use xp.required()
+        var reqdata = {};
+        data.forEach(function (entry) {
+            reqdata[entry] = 1;
+        });
+
+        return xp.required(reqdata, params, any);
     }
 };
 
