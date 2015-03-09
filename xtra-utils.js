@@ -93,7 +93,7 @@ var xtra_utils = {
             reqdata[entry] = 1;
         });
 
-        return xp.required(reqdata, params, any);
+        return xtra_utils.required(reqdata, params, any);
     },
 
     indexOfKeyInAnArray: function(data, key, reference) {
